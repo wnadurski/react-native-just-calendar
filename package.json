@@ -1,6 +1,6 @@
 {
   "name": "@bertsky/react-native-just-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "scripts": {
     "ci": "npm run build && npm run check-format && npm run check-exports",
