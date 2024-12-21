@@ -1,5 +1,11 @@
 # @bertsky/react-native-just-calendar
 
+## 2.0.2
+
+### Patch Changes
+
+- 49bf939: added readme and markings types
+
 ## 2.0.1
 
 ### Patch Changes
