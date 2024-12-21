@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { memo } from "react";
+import { StyleSheet, Text, View } from 'react-native';
+import { memo } from 'react';
 
 export type YearProps = { year: number };
 export const Year = memo(({ year }: YearProps) => (
@@ -9,7 +9,7 @@ export const Year = memo(({ year }: YearProps) => (
 ));
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
-  text: { fontWeight: "300" },
+  text: { fontWeight: '300' },
 });

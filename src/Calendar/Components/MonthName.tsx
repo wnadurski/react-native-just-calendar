@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 
 export type MonthProps = {
-  month: string; // 0 indexed
+  month: string;
 };
 export const MonthName = ({ month }: MonthProps) => (
   <View style={styles.container}>
@@ -10,7 +10,7 @@ export const MonthName = ({ month }: MonthProps) => (
 );
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
-  text: { fontWeight: "300" },
+  text: { fontWeight: '300' },
 });

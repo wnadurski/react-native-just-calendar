@@ -1,31 +1,16 @@
-import {
-  ComponentType,
-  memo,
-  ReactNode,
-  useMemo,
-  useRef,
-} from "react";
+import { memo, ReactNode, useMemo, useRef } from 'react';
 import {
   DateKey,
   defaultI18n,
   I18n,
   monthNames,
   weekDaysNames,
-} from "./consts";
-import {
-  createContext,
-  useContextSelector,
-} from "./context-selector";
-import { formatDateKey } from "./date-key";
-import {
-  Components,
-  defaultComponents,
-} from "./Components";
-import {
-  shallowEqual,
-  shallowEqualPaths,
-} from "./utils/shallow-equal";
-import { Paths } from "./utils/get-at-path";
+} from './consts';
+import { createContext, useContextSelector } from './context-selector';
+import { formatDateKey } from './date-key';
+import { Components, defaultComponents } from './Components';
+import { shallowEqualPaths } from './utils/shallow-equal';
+import { Paths } from './utils/get-at-path';
 
 export interface ContextType {
   onDayPress?: (dateKey: DateKey) => void;
@@ -58,31 +43,29 @@ export interface Props {
 }
 
 const toShallowEqual: Paths<ContextType>[] = [
-  "onDayPress",
-  "hideYear",
-  "markCurrentDay",
-  "currentDay",
-  "components",
-  "i18n.firstWeekDay",
-  "i18n.monthNames",
-  "i18n.weekDaysNames",
+  'onDayPress',
+  'hideYear',
+  'markCurrentDay',
+  'currentDay',
+  'components',
+  'i18n.firstWeekDay',
+  'i18n.monthNames',
+  'i18n.weekDaysNames',
 ];
 const compareValue = (a: ContextType, b: ContextType) => {
   return shallowEqualPaths(a, b, toShallowEqual);
 };
 
-const initialSymbol = Symbol("initial");
+const initialSymbol = Symbol('initial');
 const useValue = (value: ContextType): ContextType => {
   const changeCounterRef = useRef(0);
-  const prevRef = useRef<
-    ContextType | typeof initialSymbol
-  >(initialSymbol);
+  const prevRef = useRef<ContextType | typeof initialSymbol>(initialSymbol);
 
   if (
     prevRef.current !== initialSymbol &&
     !compareValue(prevRef.current, value)
   ) {
-    console.log("Context value changed");
+    console.log('Context value changed');
     changeCounterRef.current += 1;
   }
   prevRef.current = value;
@@ -122,20 +105,13 @@ export const ContextProvider = memo(
   },
 );
 
-export const useCalendarContext = <T,>(
-  selector: (c: ContextType) => T,
-) => useContextSelector(Context, selector);
+export const useCalendarContext = <T,>(selector: (c: ContextType) => T) =>
+  useContextSelector(Context, selector);
 
 export const useDayOnPress = () =>
   useCalendarContext(({ onDayPress }) => onDayPress);
 
-export const useComponent = <K extends keyof Components>(
-  name: K,
-) =>
-  useContextSelector(
-    Context,
-    ({ components }) => components[name],
-  );
+export const useComponent = <K extends keyof Components>(name: K) =>
+  useContextSelector(Context, ({ components }) => components[name]);
 
-export const useI18n = () =>
-  useContextSelector(Context, (c) => c.i18n);
+export const useI18n = () => useContextSelector(Context, (c) => c.i18n);

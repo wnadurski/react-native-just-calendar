@@ -1,14 +1,6 @@
-import { Month } from "./Month";
-import { FlatList, StyleSheet } from "react-native";
-import { addMonths } from "date-fns";
-import {
-  ComponentProps,
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import { Month } from './Month';
+import { FlatList, StyleSheet } from 'react-native';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import {
   createMonthPointer,
   extendLeftN,
@@ -16,15 +8,12 @@ import {
   getAll,
   getCurrentMonthIndex,
   moveToFirst,
-} from "./MonthPointer";
-import { DateKey, I18n, monthWidth } from "./consts";
-import { pipe } from "fp-ts/function";
-import { ContextProvider } from "@/components/Calendar/Context";
-import {
-  Markings,
-  MarkingsProvider,
-} from "@/components/Calendar/markings";
-import { Components } from "@/components/Calendar/Components";
+} from './MonthPointer';
+import { DateKey, I18n, monthWidth } from './consts';
+import { pipe } from 'fp-ts/function';
+import { ContextProvider } from './Context';
+import { Markings, MarkingsProvider } from './markings';
+import { Components } from './Components';
 
 export interface CalendarProps {
   onDayPress?: (dateKey: DateKey) => void;
@@ -52,20 +41,16 @@ export const Calendar = ({
   const allMonths = useMemo(() => getAll(data), [data]);
 
   const onStartReached = useCallback(() => {
-    console.log("Calendar onStartReached");
-    setData((pointer) =>
-      pipe(pointer, moveToFirst, extendLeftN(extendNumber)),
-    );
+    console.log('Calendar onStartReached');
+    setData((pointer) => pipe(pointer, moveToFirst, extendLeftN(extendNumber)));
     setResetKey((x) => x + 1);
   }, []);
   const onEndReached = useCallback(() => {
-    console.log("Calendar onEndReached");
+    console.log('Calendar onEndReached');
     setData(extendRightN(extendNumber));
   }, []);
   const renderItem = useCallback(
-    ({ item }: { item: Date }) => (
-      <Month monthDate={item} />
-    ),
+    ({ item }: { item: Date }) => <Month monthDate={item} />,
     [],
   );
   return (

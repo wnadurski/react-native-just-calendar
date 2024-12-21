@@ -1,37 +1,27 @@
-import { getDay } from "date-fns";
+import { getDay } from 'date-fns';
 
 function mod(n: number, m: number) {
   return ((n % m) + m) % m;
 }
 // 1 = Monday
-export const customGetDay = (
-  date: Date,
-  firstWeekDay: number,
-) => mod(getDay(date) - firstWeekDay, 7);
+export const customGetDay = (date: Date, firstWeekDay: number) =>
+  mod(getDay(date) - firstWeekDay, 7);
 
 export const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
-export const weekDaysNames = [
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
-  "Sun",
-];
+export const weekDaysNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export const monthWidth = 300;
 

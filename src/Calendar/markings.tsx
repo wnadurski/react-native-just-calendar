@@ -6,40 +6,35 @@ import {
   useEffect,
   useRef,
   useSyncExternalStore,
-} from "react";
-import { createStore, KeyStore } from "./keyStore";
-import { DateKey } from "@/components/Calendar/consts";
+} from 'react';
+import { createStore, KeyStore } from './keyStore';
+import { DateKey } from './consts';
 
-export type ColorString = string | "primary" | "secondary";
+export type ColorString = string | 'primary' | 'secondary';
 
 export const colors = {
-  primary: "#d84b53",
-  secondary: "#A597CC",
+  primary: '#d84b53',
+  secondary: '#A597CC',
 };
 
 const colorStringToString = (color: ColorString): string =>
-  color === "primary" || color === "secondary" ?
-    colors[color]
-  : color;
+  color === 'primary' || color === 'secondary' ? colors[color] : color;
 
 export type MarkingDetails = {
   color: ColorString;
-  variant?: "period" | "dot";
+  variant?: 'period' | 'dot';
 };
 export type SingleMarking = MarkingDetails | ColorString;
 export type Marking = SingleMarking | SingleMarking[];
 export type Markings = Record<DateKey, Marking>;
 
-export type FullMarkingDetails =
-  Required<MarkingDetails> & {
-    color: string;
-  };
+export type FullMarkingDetails = Required<MarkingDetails> & {
+  color: string;
+};
 
-export const markingToList = (
-  marking?: Marking,
-): FullMarkingDetails[] => {
-  const defaultVariant = "dot";
-  if (typeof marking === "string") {
+export const markingToList = (marking?: Marking): FullMarkingDetails[] => {
+  const defaultVariant = 'dot';
+  if (typeof marking === 'string') {
     return [
       {
         color: colorStringToString(marking),
@@ -76,9 +71,7 @@ export const MarkingsProvider = ({
   markings?: Markings;
   children: ReactNode;
 }) => {
-  const storeRef = useRef<
-    KeyStore<Marking, DateKey> | undefined
-  >();
+  const storeRef = useRef<KeyStore<Marking, DateKey> | undefined>(undefined);
 
   if (!storeRef.current) {
     storeRef.current = createStore(markings);
@@ -86,32 +79,23 @@ export const MarkingsProvider = ({
 
   useEffect(() => {
     const oldValue = storeRef.current?.getValue();
-    if (
-      storeRef.current &&
-      !Object.is(markings, oldValue)
-    ) {
+    if (storeRef.current && !Object.is(markings, oldValue)) {
       storeRef.current.update(markings);
     }
   });
 
   return (
-    <Context.Provider value={storeRef.current!}>
-      {children}
-    </Context.Provider>
+    <Context.Provider value={storeRef.current!}>{children}</Context.Provider>
   );
 };
 
 export const useDayMarkings = (dateKey: DateKey) => {
   const store = useContext(Context);
   const subscribe = useCallback(
-    (onStoreChange: () => void) =>
-      store.subscribe(dateKey, onStoreChange),
+    (onStoreChange: () => void) => store.subscribe(dateKey, onStoreChange),
     [dateKey],
   );
   return markingToList(
-    useSyncExternalStore(
-      subscribe,
-      () => store.getValue()[dateKey],
-    ),
+    useSyncExternalStore(subscribe, () => store.getValue()[dateKey]),
   );
 };

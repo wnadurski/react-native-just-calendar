@@ -1,7 +1,7 @@
-import { Day, DayProps } from "./Day";
-import { ComponentType } from "react";
-import { Year, YearProps } from "./Year";
-import { WeekDays, WeekDaysProps } from "./WeekDays";
+import { Day, DayProps } from './Day';
+import { ComponentType } from 'react';
+import { Year, YearProps } from './Year';
+import { WeekDays, WeekDaysProps } from './WeekDays';
 
 export type Components = {
   Day: ComponentType<DayProps>;

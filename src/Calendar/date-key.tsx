@@ -1,11 +1,10 @@
-import { format, parse } from "date-fns";
-import { DateKey } from "./consts";
+import { format, parse } from 'date-fns';
+import { DateKey } from './consts';
 
-export const formatDateKey = (date: Date) =>
-  format(date, "yyyy-MM-dd");
+export const formatDateKey = (date: Date) => format(date, 'yyyy-MM-dd');
 
 export const parseDateKey = (dateKey: DateKey) =>
-  parse(dateKey, "yyyy-MM-dd", new Date());
+  parse(dateKey, 'yyyy-MM-dd', new Date());
 
 export const getDateKey = (
   day: number, // 0 indexed
