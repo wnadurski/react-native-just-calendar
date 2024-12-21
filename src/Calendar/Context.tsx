@@ -8,7 +8,7 @@ import {
 } from './consts';
 import { createContext, useContextSelector } from './context-selector';
 import { formatDateKey } from './date-key';
-import { Components, defaultComponents } from './Components';
+import { CalendarComponents, defaultCalendarComponents } from './Components';
 import { shallowEqualPaths } from './utils/shallow-equal';
 import { Paths } from './utils/get-at-path';
 
@@ -17,7 +17,7 @@ export interface ContextType {
   hideYear?: boolean;
   markCurrentDay?: boolean;
   currentDay: DateKey;
-  components: Components;
+  components: CalendarComponents;
   i18n: I18n;
 }
 
@@ -25,7 +25,7 @@ const noop = () => {};
 const Context = createContext<ContextType>({
   onDayPress: noop,
   currentDay: formatDateKey(new Date()),
-  components: defaultComponents,
+  components: defaultCalendarComponents,
   i18n: {
     firstWeekDay: 1,
     weekDaysNames,
@@ -38,7 +38,7 @@ export interface Props {
   onDayPress?: (dateKey: DateKey) => void;
   hideYear?: boolean;
   markCurrentDay?: boolean;
-  components?: Partial<Components>;
+  components?: Partial<CalendarComponents>;
   i18n?: Partial<I18n>;
 }
 
@@ -90,7 +90,7 @@ export const ContextProvider = memo(
           markCurrentDay: markCurrentDay ?? true,
           currentDay,
           components: {
-            ...defaultComponents,
+            ...defaultCalendarComponents,
             ...components,
           },
           i18n: {
@@ -111,7 +111,7 @@ export const useCalendarContext = <T,>(selector: (c: ContextType) => T) =>
 export const useDayOnPress = () =>
   useCalendarContext(({ onDayPress }) => onDayPress);
 
-export const useComponent = <K extends keyof Components>(name: K) =>
+export const useComponent = <K extends keyof CalendarComponents>(name: K) =>
   useContextSelector(Context, ({ components }) => components[name]);
 
 export const useI18n = () => useContextSelector(Context, (c) => c.i18n);

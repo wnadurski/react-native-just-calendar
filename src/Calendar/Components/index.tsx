@@ -3,13 +3,13 @@ import { ComponentType } from 'react';
 import { Year, YearProps } from './Year';
 import { WeekDays, WeekDaysProps } from './WeekDays';
 
-export type Components = {
+export type CalendarComponents = {
   Day: ComponentType<DayProps>;
   Year: ComponentType<YearProps>;
   WeekDays: ComponentType<WeekDaysProps>;
 };
 
-export const defaultComponents: Components = {
+export const defaultCalendarComponents: CalendarComponents = {
   Day,
   Year,
   WeekDays,
