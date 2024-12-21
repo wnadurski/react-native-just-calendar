@@ -1,5 +1,11 @@
 # @bertsky/react-native-just-calendar
 
+## 2.0.1
+
+### Patch Changes
+
+- 7920274: fix types in package.json
+
 ## 2.0.0
 
 ### Major Changes
