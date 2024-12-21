@@ -28,13 +28,13 @@ export const getCurrentMonthIndex = (monthPointer: MonthPointer): number =>
   monthPointer.currentIndex;
 
 export const getCurrentMonth = (monthPointer: MonthPointer): Date =>
-  monthPointer.data[getCurrentMonthIndex(monthPointer)];
+  monthPointer.data[getCurrentMonthIndex(monthPointer)]!;
 
 export const getPreviousMonth = (monthPointer: MonthPointer): Date =>
-  monthPointer.data[getCurrentMonthIndex(monthPointer) - 1];
+  monthPointer.data[getCurrentMonthIndex(monthPointer) - 1]!;
 
 export const getNextMonth = (monthPointer: MonthPointer): Date =>
-  monthPointer.data[getCurrentMonthIndex(monthPointer) + 1];
+  monthPointer.data[getCurrentMonthIndex(monthPointer) + 1]!;
 
 export const moveLeft = (monthPointer: MonthPointer): MonthPointer => ({
   currentIndex:
