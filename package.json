@@ -2,6 +2,7 @@
   "name": "@bertsky/react-native-just-calendar",
   "version": "2.0.0",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -15,6 +16,7 @@
     "check-format": "prettier --check .",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "build": "tsup",
+    "create-changeset": "changeset",
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "npm run ci",
     "lint": "tsc",
