@@ -65,7 +65,6 @@ const useValue = (value: ContextType): ContextType => {
     prevRef.current !== initialSymbol &&
     !compareValue(prevRef.current, value)
   ) {
-    console.log('Context value changed');
     changeCounterRef.current += 1;
   }
   prevRef.current = value;

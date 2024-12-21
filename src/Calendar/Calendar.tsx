@@ -41,12 +41,10 @@ export const Calendar = ({
   const allMonths = useMemo(() => getAll(data), [data]);
 
   const onStartReached = useCallback(() => {
-    console.log('Calendar onStartReached');
     setData((pointer) => pipe(pointer, moveToFirst, extendLeftN(extendNumber)));
     setResetKey((x) => x + 1);
   }, []);
   const onEndReached = useCallback(() => {
-    console.log('Calendar onEndReached');
     setData(extendRightN(extendNumber));
   }, []);
   const renderItem = useCallback(

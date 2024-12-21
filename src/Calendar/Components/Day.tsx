@@ -26,7 +26,6 @@ export const Day = memo(
       markings,
       groupBy(({ variant }) => variant),
     );
-    console.log('Wojtek', dateKey);
     return (
       <Pressable
         android_ripple={androidRipple}
