@@ -14,6 +14,7 @@ import { pipe } from 'fp-ts/function';
 import { Month } from './Month';
 import { ContextProvider } from './Context';
 import { CalendarComponents } from './Components';
+import { parseDateKey } from './date-key';
 
 export interface CalendarProps {
   onDayPress?: (dateKey: DateKey) => void;
@@ -21,6 +22,7 @@ export interface CalendarProps {
   hideYear?: boolean;
   i18n?: Partial<I18n>;
   components?: Partial<CalendarComponents>;
+  initialMonth?: DateKey;
 }
 
 export const Calendar = ({
@@ -29,13 +31,17 @@ export const Calendar = ({
   hideYear,
   i18n,
   components,
+  initialMonth,
 }: CalendarProps) => {
   const viewRef = useRef<FlatList>(null);
   const initialMonths = 11;
   const extendNumber = Math.ceil(initialMonths / 2);
 
   const [data, setData] = useState(
-    createMonthPointer(new Date(), initialMonths),
+    createMonthPointer(
+      initialMonth ? parseDateKey(initialMonth) : new Date(),
+      initialMonths,
+    ),
   );
   const [resetKey, setResetKey] = useState(0);
   const allMonths = useMemo(() => getAll(data), [data]);
