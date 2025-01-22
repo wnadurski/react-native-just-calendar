@@ -1,5 +1,11 @@
 # @bertsky/react-native-just-calendar
 
+## 2.2.0
+
+### Minor Changes
+
+- added initialMonth prop
+
 ## 2.1.0
 
 ### Minor Changes
