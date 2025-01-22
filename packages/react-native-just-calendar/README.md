@@ -59,7 +59,7 @@ export default function App() {
 
 ### Props ⚙️
 
-- **`onDayPress`**: `(key: string) => void`  
+- **`onDayPress`**: `(key: DateKey) => void`  
   Callback triggered when a day is pressed. Use it to handle marking or unmarking days.
 
 - **`markings`**: `Markings`  
@@ -67,6 +67,8 @@ export default function App() {
 
 - **`i18n`**: `object`  
   An object to customize calendar localization, such as month names, day names, or any other text.
+- **`initialMonth`**: `DateKey`  
+  A day string with a month to display on first render.
 
 ---
 
